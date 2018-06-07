@@ -1,0 +1,951 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.avensio</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- RELEASE for deploying to Release repo
+         SNAPSHOT for deploying to Snapshot repo
+    -->
+
+    <name>parent</name>
+    <description>template parent pom</description>
+    <packaging>jar</packaging>
+
+    <developers>
+        <developer>
+            <name>Armin Kunkel</name>
+            <email>armin@kunkel24.de</email>
+            <organization>kunkel24</organization>
+            <organizationUrl>https://kunkel24.de</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>admin</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.13.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- Upload artifacts to... -->
+    <distributionManagement>
+        <!-- To support key exchange add
+             KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha‌​1
+             to /etc/ssh/sshd_config on the server!
+         -->
+        <!--
+        <site>
+            <id>site-deploy</id>
+            <name>site-deploy</name>
+            <url>scp://avensio.org/var/www/html/docs/project/</url>
+        </site>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Releases</name>
+            <url>https://avensio.org:8443/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Snapshot</name>
+            <url>https://avensio.org:8443/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        -->
+    </distributionManagement>
+
+    <!-- Download artifacts from... -->
+    <repositories>
+        <!--
+        <repository>
+            <id>maven-group</id>
+            <url>https://avensio.org:8443/repository/maven-group/</url>
+        </repository>
+        -->
+    </repositories>
+
+    <dependencies>
+
+        <!-- Generating logger, getter, setter and so on over annotations -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.22</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- marshalling -->
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- test scoped -->
+        <dependency>
+            <groupId>com.github.kstyrc</groupId>
+            <artifactId>embedded-redis</artifactId>
+            <version>0.6</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Testing and validation of REST services in Java is harder than in dynamic languages
+             such as Ruby and Groovy. REST Assured brings the simplicity of using these languages into the Java domain.
+             https://github.com/rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- unit test your controllers using the RestAssuredMockMvc -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JsonPath:
+                    - Easy json document parsing
+                    - uses Groovy's GPath syntax
+               -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+           XmlPath:
+           - Easy xml document parsing
+       -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>-->
+
+        <!-- session -->
+        <!--<dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>1.3.3.RELEASE</version>
+        </dependency>-->
+
+        <!-- web -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- development-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
+        <!-- security -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>1.0.9.RELEASE</version>
+        </dependency>
+
+        <!-- Password Validation -->
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
+            <version>${passay.version}</version>
+        </dependency>
+
+        <!-- persistence -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>1.13.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-keyvalue</artifactId>
+            <version>1.2.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-messaging</artifactId>
+            <version>4.2.6.RELEASE</version>
+        </dependency>
+        <!-- mail -->
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+        </dependency>
+
+        <!-- common utilities -->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!-- logging -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <!-- <scope>runtime</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <!-- <scope>runtime</scope> --> <!-- some spring dependencies need to compile against jcl -->
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+
+        <!-- Persistence driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <!-- <scope>test</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Plugin collection for the ROME RSS and Atom Utilities -->
+        <dependency>
+            <groupId>com.rometools</groupId>
+            <artifactId>rome-modules</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Dependencies provided to use in a submodule (just add dependency group- and artifactid) -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- liquibase core -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>3.6.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Make sure the JAVA VERSION is 1.8 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <!-- serve entry point in executable jar by default -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.avensio.common.CommonApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- to fix missing version problem in phase site -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <!-- to fix missing version problem in phase site
+                     AND enable ssh/scp support
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.6</version>
+                    <dependencies>
+                        <dependency><!-- add support for ssh/scp -->
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-ssh</artifactId>
+                            <version>1.0</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <!-- The Spring Boot Maven Plugin provides Spring Boot support in Maven
+                - package executable jar or war archives and run an application “in-place”
+                - repackage executable jar or war that the original is not overwritten
+
+                Note: To build a war file that is both executable and deployable into an external container
+                you need to mark the embedded container dependencies (scope) as “provided”
+                -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>springloaded</artifactId>
+                            <version>${spring-loaded.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <!-- needed for integration testing !!IMPORTANT!!
+                        (the reason is something like: that surefire or failsafe can execute the artifact [jar archive])-->
+                        <classifier>exec</classifier>
+                    </configuration>
+                    <executions>
+                       <!-- <execution>
+                            <id>pre-integration-test</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>start</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skip}</skip>
+                                <useTestClasspath>true</useTestClasspath>
+                            </configuration>
+                        </execution>-->
+                        <!--<execution>
+                            <id>make-executable</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                            &lt;!&ndash; Use to simply package jar files
+                            <configuration>
+                                <layout>none</layout>
+                            </configuration>
+                            &ndash;&gt;
+                        </execution>-->
+                        <!--<execution>
+                            <id>post-integration-test</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>stop</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skip}</skip>
+                            </configuration>
+                        </execution>-->
+                    </executions>
+                </plugin>
+
+                <!-- Executes unit tests during test phase and generates reports in two different formats
+                - txt
+                - xml
+                to ${basedir}/target/surefire-reports
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.21.0</version>
+                    <configuration>
+                        <testFailureIgnore>true</testFailureIgnore>
+                        <skipTests>true</skipTests>
+                        <excludes>
+                            <exclude>**/*IntegrationTest.java</exclude>
+                            <exclude>**/*IT.java</exclude>
+                            <exclude>**/IntegrationTestSuit.java</exclude>
+                            <exclude>**/*LiveTest.java</exclude>
+                            <exclude>**/*LT.java</exclude>
+                            <exclude>**/LiveTestSuite.java</exclude>
+                        </excludes>
+                        <includes>
+                            <include>**/*UnitTest.java</include>
+                            <include>**/*UT.java</include>
+                            <include>**/UnitTestSuite.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+
+                <!-- Executes integration tests during test phase and generates reports in two different formats -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.21.0</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/*UnitTest.java</exclude>
+                            <exclude>**/*UT.java</exclude>
+                            <exclude>**/*LiveTest.java</exclude>
+                            <exclude>**/*LT.java</exclude>
+                            <exclude>**/UnitTestSuit.java</exclude>
+                        </excludes>
+                        <includes>
+                            <include>**/*IntegrationTest.java</include>
+                            <include>**/*IT.java</include>
+                            <include>**/IntegrationTestSuite.java</include>
+                        </includes>
+                        <!-- Parallel Config for failsafe
+                         http://maven.apache.org/surefire/maven-failsafe-plugin/examples/fork-options-and-parallel-execution.html -->
+                        <parallel>methods</parallel>
+                        <threadCount>10</threadCount>
+                    </configuration>
+                    <dependencies>
+                        <!-- Be sure to run test with JUnit 4.7(or higher) to be able to run tests in parallel -->
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-junit47</artifactId>
+                            <version>2.21.0</version>
+                        </dependency>
+                        <!-- To use @NotThreadSafe. Use this Annotation for test witch should run in single Thread instance -->
+                        <dependency>
+                            <groupId>com.github.stephenc.jcip</groupId>
+                            <artifactId>jcip-annotations</artifactId>
+                            <version>1.0-1</version>
+                        </dependency>
+                    </dependencies>
+
+                    <!--<executions>
+                        <execution>
+                            <id>integration-test</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>integration-test</goal>
+                            </goals>
+                        </execution>
+                    </executions>-->
+                </plugin>
+
+                <!-- Parses the generated TEST-*.xml files under ${basedir}/target/surefire-reports
+                and renders them using DOXIA, which creates the web interface (html) version of the test results. -->
+                <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.20</version>
+            </plugin>-->
+
+                <!-- USE PROPERTIES out of properties files (src/main/resources/application.properties)
+                with SYNTAX ${property.name} IN the maven POM -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+                    <executions>
+                        <!--<execution>
+                            <id>read application properties</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>write-project-properties</goal>
+                            </goals>
+                            <configuration>
+                                <files>
+                                    <file>src/main/resources/application.properties</file>
+                                </files>
+                            </configuration>
+                        </execution>-->
+                       <!-- <execution>
+                            <id>write active profile properties</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>write-active-profile-properties</goal>
+                            </goals>
+                            <configuration>
+                                <outputFile>src/test/resources/application-live-test.properties</outputFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>read Unittest application properties</id>
+                            <phase>test-compile</phase>
+                            <goals>
+                                <goal>write-active-profile-properties</goal>
+                            </goals>
+                            <configuration>
+                                <outputFile>src/test/resources/application-unit-test.properties</outputFile>
+                            </configuration>
+                        </execution>-->
+                    </executions>
+                </plugin>
+
+                <!-- Copying main resources and test resources in different directories -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+
+                <!-- The Assembly Plugin for Maven is primarily intended to allow users to aggregate the project output
+                     along with its dependencies, modules, site documentation, and other files into a single distributable archive.
+                     Formats:
+                     - zip
+                     - tar
+                     - tar.gz (or tgz)
+                     - tar.bz2 (or tbz2)
+                     - tar.snappy
+                     - tar.xz (or txz)
+                     - jar      jar-with-dependencies
+                     - dir
+                     - war
+                     - and any other format that the ArchiveManager has been configured for
+                     -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <configuration>
+                        <descriptorRefs>
+                            <!--Predefined descriptors
+                                - bin
+                                    Produce binary distribution of the project (of the jar archive + README, LICENCE, NOTICE files in project root)
+                                    in three archive formats: tar.gz, tar.bz2, and zip
+                                - jar-with-dependencies
+                                    Produce JAR which contains the binary output of the project, along its the unpacked dependencies
+                                - src
+                                    Produce source archive with the contents of your project's /src directory structure
+                                - project
+                                    Produce archive with the whole project minus the /target directories
+                                     -->
+                            <!--<descriptorRef>bin</descriptorRef>-->
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                            <!-- <descriptorRef>src</descriptorRef>
+                            <descriptorRef>project</descriptorRef> -->
+                        </descriptorRefs>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                            <phase>package</phase> <!-- bind to the packaging phase -->
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>${cargo-maven2-plugin.version}</version>
+                    <configuration>
+                        <container>
+                            <containerId>tomcat8x</containerId>
+                            <type>embedded</type>
+                            <systemProperties>
+                                <!--<envTarget>dev</envTarget>-->
+                                <persistenceTarget>cargo</persistenceTarget>
+                            </systemProperties>
+                        </container>
+                        <configuration>
+                            <properties>
+                                <cargo.servlet.port>8083</cargo.servlet.port>
+                                <cargo.tomcat.ajp.port>8010</cargo.tomcat.ajp.port>
+                                <cargo.rmi.port>8006</cargo.rmi.port>
+                            </properties>
+                        </configuration>
+                        <deployables>
+                            <deployable>
+                                <groupId>org.avensio</groupId>
+                                <artifactId>common</artifactId>
+                                <location>target/common-0.0.1-SNAPSHOT.jar</location>
+                                <type>jar</type>
+                            </deployable>
+                        </deployables>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>start-container</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>start</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>stop-container</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>stop</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- reserve ports. They will be available as properties -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>reserve-network-port</id>
+                            <goals>
+                                <goal>reserve-network-port</goal>
+                            </goals>
+                            <phase>process-resources</phase>
+                            <configuration>
+                                <portNames>
+                                    <portName>selenium.server.port</portName>
+                                    <portName>tomcat.http.port</portName>
+                                </portNames>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Selenium server for Live testing -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>selenium-maven-plugin</artifactId>
+                    <version>2.3</version>
+                    <executions>
+                        <!-- Start selenium server -->
+                        <execution>
+                            <id>start-selenium</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>start-server</goal>
+                            </goals>
+                        </execution>
+                        <!-- Start selenium Tests -->
+                        <execution>
+                            <id>start-selenium-tests</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>selenese</goal>
+                            </goals>
+                        </execution>
+                        <!-- Stop selenium server -->
+                        <execution>
+                            <id>stop-selenium</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>stop-server</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <port>${selenium.server.port}</port>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <!--
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0</version>
+            </extension>
+        </extensions>-->
+
+        <!-- Use properties with ${property.name} outside the pom -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+    
+    <profiles>
+        <profile>
+            <id>liquibase</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-core</artifactId>
+                </dependency>
+            </dependencies>
+            <activation>
+                <!--
+                <file>
+                    <exists>${liquibase.changelog.maven}</exists>
+                </file>
+                -->
+            </activation>
+            <!-- Execute liquibase during build -->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.liquibase</groupId>
+                        <artifactId>liquibase-maven-plugin</artifactId>
+                        <version>3.6.1</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.liquibase</groupId>
+                                <artifactId>liquibase-core</artifactId>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <changeLogFile>${liquibase.change-log}</changeLogFile>
+                            <driver>${spring.datasource.driver-class-name}</driver>
+                            <url>${liquibase.url}</url>
+                            <username>${liquibase.twitterUser}</username>
+                            <password>${liquibase.password}</password>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>update</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>unit-tests</id>
+            <properties>
+                <debug>true</debug>
+                <spring.profiles.active>test</spring.profiles.active>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Executes unit tests during test phase and generates reports in two different formats -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                        </configuration>
+                    </plugin>
+                    <!-- Copying main resources and testresources in different directorys -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.1.0</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>integration-tests</id>
+            <dependencies>
+
+            </dependencies>
+            <properties>
+                <spring.hibernate.ddl-auto>none</spring.hibernate.ddl-auto>
+                <spring.jpa.hibernate.ddl-auto>create-drop</spring.jpa.hibernate.ddl-auto>
+                <spring.hibernate.naming.strategy>org.hibernate.cfg.DefaultNamingStrategy</spring.hibernate.naming.strategy>
+                <debug>true</debug>
+                <spring.profiles.active>test,redis</spring.profiles.active>
+
+                <skip>false</skip>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- Executes integration tests during test phase and generates reports in two different formats -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                    <!-- Deploy application container for test environment-->
+                    <!--<plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <version>${cargo-maven2-plugin.version}</version>
+                    </plugin>-->
+                    <!-- Copying main resources and testresources in different directorys -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>${maven-resources-plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>selenium-test</id>
+            <properties>
+                <test>asd</test>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>selenium-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <properties>
+
+        <!-- non-dependencies -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        
+        <!-- commons and utils -->
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <guava.version>21.0</guava.version>
+        
+        <!-- persistence -->       
+        <validation-api.version>1.1.0.Final</validation-api.version>
+  
+        <rest-assured.version>2.9.0</rest-assured.version>
+        
+        <!-- password validation -->
+        <passay.version>1.0</passay.version>
+
+        <!-- maven plugins -->
+		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>		
+
+
+        <skip>true</skip>
+    </properties>
+
+</project>

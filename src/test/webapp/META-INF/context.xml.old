@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- NOT WORKING -- NEED TO BE REVIEWED!!!
+    <Resource name="jdbc/mysql/kunkel24"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username=""
+              password=""
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://kunkel24.de:3306/jndi_test_db"
+              validationQuery="select 1"
+              removeAbandoned="true"
+              removeAbandonedTimeout="120"
+              logAbandoned="true"
+              maxWait="60"
+              maxActive="10"
+              maxIdle="4"/>
+    <Resource name="jdbc/mysql/avensio"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username=""
+              password=""
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://avensio.org:3306/jndi_test_db"
+              validationQuery="select 1"
+              removeAbandoned="true"
+              removeAbandonedTimeout="120"
+              logAbandoned="true"
+              maxWait="60"
+              maxActive="10"
+              maxIdle="4"/> -->
+    <!--<Resource name="jdbc/mydatabase"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="YOUR_USERNAME"
+              password="YOUR_PASSWORD"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://pgsql.metawerx.net:5440/YOUR_DATABASE_NAME"
+              validationQuery="select 1"
+              maxActive="10"
+              maxIdle="2"/>
+    <Resource name="jdbc/mydatabase2"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="YOUR_USERNAME"
+              password="YOUR_PASSWORD"
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@oracle.metawerx.net:1521:YOUR_DATABASE_NAME"
+              validationQuery="select 1 from dual"
+              maxActive="10"
+              maxIdle="2"/>-->
+    <!--<ResourceLink name="jdbc/mysql/kunkel24"
+                  global="jdbc/mysql/kunkel24"
+                  auth="Container"
+                  type="javax.sql.DataSource" /> -->
+
+
+    <!-- JNDI-Resource template!
+
+    <Resource name="jdbc/mydatabase"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="YOUR_USERNAME"
+              password="YOUR_PASSWORD"
+              driverClassName="JDBC_DRIVER_CLASS"
+              url="JDBC_URL"
+              validationQuery="select 1"
+              maxActive="10"
+              maxIdle="2"/> -->
+</Context>
