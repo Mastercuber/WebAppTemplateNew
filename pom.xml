@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.avensio</groupId>
+    <groupId>de.kunkel24</groupId>
     <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <!-- RELEASE for deploying to Release repo
@@ -42,17 +42,17 @@
         <site>
             <id>site-deploy</id>
             <name>site-deploy</name>
-            <url>scp://avensio.org/var/www/html/docs/project/</url>
+            <url>scp://domain.tld/var/www/html/docs/project/</url>
         </site>
         <repository>
             <id>nexus-releases</id>
             <name>Releases</name>
-            <url>https://avensio.org:8443/repository/maven-releases/</url>
+            <url>https://domain.tld:8443/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <name>Snapshot</name>
-            <url>https://avensio.org:8443/repository/maven-snapshots/</url>
+            <url>https://domain.tld:8443/repository/maven-snapshots/</url>
         </snapshotRepository>
         -->
     </distributionManagement>
@@ -62,7 +62,7 @@
         <!--
         <repository>
             <id>maven-group</id>
-            <url>https://avensio.org:8443/repository/maven-group/</url>
+            <url>https://domain.tld:8443/repository/maven-group/</url>
         </repository>
         -->
     </repositories>
